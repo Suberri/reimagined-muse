@@ -60,6 +60,15 @@ angular.module('starter.controllers', [])
   $scope.state = {};
   $scope.state.messages = [];
 
+  $scope.setName = function() {
+    makeMessage($scope.myname, $scope.myname, 100).then(function() {
+      makeMessage("Art", "Hi, " + $scope.myname + "! It's great to meet you. My name is Arthur, but you can call me Art for short.", 2000).then(function() {
+        makeMessage("Art", "Let's get started! When you're ready, switch over to the gallery view. I'll try my best to pull up some interesting information about the art around you. If you think something's cool, let me know.", 5000).then(function() {
+        })
+      });
+    });
+  }
+
   function makeMessage(name, message, delay) {
     var deferred = $q.defer();
     delay = delay || 2000;
@@ -84,9 +93,9 @@ angular.module('starter.controllers', [])
   }
   var thing = Locations.current().then(function(data) {
     $scope.gallery = data;
-    makeMessage("Art", "Hey "+$scope.myname+", welcome to the "+data.title+" gallery").then(function() {
+    makeMessage("Art", "Hi! Welcome to the Philadelphia Museum of Art. Let's get started! What's your name?").then(function() {
 
-      makeMessage("Art", "Let me know if you have any questions, specifically around the history or process of the pieces in this gallery.");
+      // makeMessage("Art", "Let me know if you have any questions, specifically around the history or process of the pieces in this gallery.");
     })
   });
 

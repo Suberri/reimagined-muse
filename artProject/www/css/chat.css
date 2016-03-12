@@ -66,3 +66,36 @@ body.platform-browser .message.from-them:after {
   border-bottom-right-radius: 10px;
   -webkit-transform: translate(-30px, -2px);
 }
+
+.pull-right span, .pull-left span {
+  display: block;
+}
+.pull-right span { text-align: right; }
+.pull-left span { text-align: left; }
+
+.input {
+  display: block;
+  width: 100%;
+}
+.input:before,
+.input:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.input:after {
+    clear: both;
+}
+
+.input input {
+  float: left;
+  width: 79%;
+  height: 35px;
+  margin: 0;
+}
+.input button {
+  float: left;
+  width: 19%;
+  margin-left: 2%;
+  height: 35px;
+}
