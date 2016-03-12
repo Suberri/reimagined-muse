@@ -46,11 +46,15 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('GalleriesDetailCtrl', function($scope, $stateParams, Galleries) {
+.controller('GalleriesDetailCtrl', function($scope, $stateParams, Locations, $ionicViewService) {
   $scope.item = {};
-  Galleries.all().then(function(response) {
-    $scope.item = response.data.filter(function(item){ return item.objectid == $stateParams.objectid; })[0];
+  Locations.current().then(function(data) {
+    $scope.item = data.objects.filter(function(item){ return item.objectid == $stateParams.objectid; })[0];
   });
+  
+  $scope.goBack = function() {
+    $ionicViewService.getBackView().go()
+  }
 
 })
 
@@ -91,6 +95,7 @@ angular.module('starter.controllers', [])
   } catch (e) {
     $scope.myname = "you";
   }
+
   var thing = Locations.current().then(function(data) {
     $scope.gallery = data;
     makeMessage("Art", "Hi! Welcome to the Philadelphia Museum of Art. Let's get started! What's your name?").then(function() {
@@ -107,19 +112,4 @@ angular.module('starter.controllers', [])
   $scope.hrTime = function(date) {
     return date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
   }
-})
-
-.controller('WelcomeCtrl', function($scope, $rootScope, $state) {
-  $scope.user = {};
-  $scope.next = function(user){
-    window.localStorage.user = JSON.stringify(user);
-    $state.go('welcome2', {user: user});
-  };
-})
-
-.controller('Welcome2Ctrl', function($scope, $rootScope, $state) {
-  $scope.user = $scope.user || JSON.parse(window.localStorage.user);
-  $scope.getStarted = function(){
-    $state.go('tab.galleries', {});
-  };
 });

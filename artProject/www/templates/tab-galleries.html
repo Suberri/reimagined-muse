@@ -1,14 +1,10 @@
 <ion-view view-title="Current Gallery">
-  <ion-content>
-    <h2>{{gallery.title}}</h2>
+  <ion-content class="Gallery">
+    <h3>{{gallery.title}}</h3>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="o in gallery.objects" type="item-text-wrap" ui-sref="gallery-detail({ objectid: o.objectid })">
         <img ng-src="img/thumbnails/{{o.imageFilename}}">
-        <h2>{{o.titleOfWork}}</h2>
-        <p>{{o.materials}}</p>
-        <p>{{o.date}}</p>
-        <p>{{o.creditLine}}</p>
-        <p>{{o.galleryLocation}}</p>
+        <h2>{{o.title}}</h2>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>

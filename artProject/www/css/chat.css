@@ -67,6 +67,7 @@ body.platform-browser .message.from-them:after {
   -webkit-transform: translate(-30px, -2px);
 }
 
+<<<<<<< HEAD
 .pull-right span, .pull-left span {
   display: block;
 }
@@ -98,4 +99,9 @@ body.platform-browser .message.from-them:after {
   width: 19%;
   margin-left: 2%;
   height: 35px;
+}
+
+.giant-icon {
+  font-size: 4rem;
+  line-height: 1.5;
 }
