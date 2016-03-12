@@ -66,3 +66,9 @@ body.platform-browser .message.from-them:after {
   border-bottom-right-radius: 10px;
   -webkit-transform: translate(-30px, -2px);
 }
+
+
+.giant-icon {
+  font-size: 4rem;
+  line-height: 1.5;
+}

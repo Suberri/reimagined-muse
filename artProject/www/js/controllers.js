@@ -46,11 +46,15 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('GalleriesDetailCtrl', function($scope, $stateParams, Galleries) {
+.controller('GalleriesDetailCtrl', function($scope, $stateParams, Locations, $ionicViewService) {
   $scope.item = {};
-  Galleries.all().then(function(response) {
-    $scope.item = response.data.filter(function(item){ return item.objectid == $stateParams.objectid; })[0];
+  Locations.current().then(function(data) {
+    $scope.item = data.objects.filter(function(item){ return item.objectid == $stateParams.objectid; })[0];
   });
+  
+  $scope.goBack = function() {
+    $ionicViewService.getBackView().go()
+  }
 
 })
 

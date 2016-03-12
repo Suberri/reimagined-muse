@@ -1,22 +1,27 @@
 <ion-view view-title="Galleries">
   <ion-content padding="true">
-    <div class="card">
+    <a class="button-clear" href="#/tab/galleries">
+      <span class="ion-ios-arrow-left"></span> back</a>
+    <br>
+    <div class="card Gallery-object">
       <div class="item item-text-wrap">
-        <h2>{{item.titleOfWork1}}</h2>
+        <h2>{{item.title}}</h2>
+        <p>{{item.artist}}</p>
         <img ng-src="img/thumbnails/{{item.imageFilename}}" alt="">
         <p>{{item.materials}}</p>
         <p>{{item.medium}}</p>
         <p>{{item.date}}</p>
         <div class="button-bar">
-          <a class="button">yay</a>
-          <a class="button">meh</a>
+          <a class="button">
+            <span class="ion-happy-outline giant-icon"></span>
+          </a>
         </div>
       </div>
     </div>
 
   </ion-content>
 </ion-view>
-<ion-footer-bar align-title="left" class="">
+<ion-footer-bar >
   <button class="button button-large button-block button-primary">
     Have a question?
   </button>

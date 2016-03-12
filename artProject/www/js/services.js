@@ -19,6 +19,29 @@ angular.module('starter.services', [])
   }
   ];
 
+  // Tidy up and consolidate fields
+  function cleanObject(object) {
+    var titles = [];
+    if(object.titleOfWork1) titles.push(object.titleOfWork1)
+    if(object.titleOfWork2) titles.push(object.titleOfWork2)
+    if(object.titleOfWork3) titles.push(object.titleOfWork3)
+    if(object.titleOfWork4) titles.push(object.titleOfWork4)
+    if(object.titleOfWork5) titles.push(object.titleOfWork5)
+    if(object.titleOfWork6) titles.push(object.titleOfWork6)
+    if(object.titleOfWork7) titles.push(object.titleOfWork7)
+    object.title = titles.join(',');
+
+    var artists = [];
+    if(object.artistName1) artists.push(object.artistName1)
+    if(object.artistName2) artists.push(object.artistName2)
+    if(object.artistName3) artists.push(object.artistName3)
+    if(object.artistName4) artists.push(object.artistName4)
+    if(object.artistName5) artists.push(object.artistName5)
+    if(object.artistName6) artists.push(object.artistName6)
+    if(object.artistName7) artists.push(object.artistName7)
+    object.artist = artists.join(',');
+    return object;
+  }
   // Alias is the gallery ID. What we want to do
   // is grab the gallery ID, then search through
   // collection data to fetch an object in that
@@ -46,6 +69,7 @@ angular.module('starter.services', [])
         _.each(objects, function(object) {
           var desc = object.galleryLocation;
           if (galleryRegex.test(desc)) {
+            object = cleanObject(object)
             gallery.objects.push(object)
           }
         });
