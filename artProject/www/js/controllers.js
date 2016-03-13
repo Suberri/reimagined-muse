@@ -189,8 +189,10 @@ angular.module('starter.controllers', [])
         cb: function() {
           makeMessage($scope.myname, "Let's hear it")
           .then(function() {
-            makeMessage($scope.theirname, "Racism in his home city of Philadelphia eventually pressured Tanner to study abroad in France, where he met and eventually became one of Thomas Eakins most beloved students!");
-            clearResponseButtons();
+            makeMessage($scope.theirname, "Racism in his home city of Philadelphia eventually pressured Tanner to study abroad in France, where he met and eventually became one of Thomas Eakins most beloved students!").then(function() {
+              clearResponseButtons();
+              setupResponse(cuteResponse);
+            });
           })
         }
       } , {
@@ -199,11 +201,27 @@ angular.module('starter.controllers', [])
           makeMessage($scope.myname, "Not right now")
           .then(function() {
             makeMessage($scope.theirname, "No problem. I've saved this connection for you -- feel free to check it out later!")
+            clearResponseButtons();
           })
         }
       }
     ]
   };
+
+  var cuteResponse = {
+    text: "If you're interested in more of Tanner's artwork, you can find some in gallery 116, right around the corner!",
+    responses: [
+    {
+      name: "Thanks",
+      cb: function() {
+        makeMessage($scope.myname, "Thanks")
+        .then(function() {
+          makeMessage($scope.theirname, "👍");
+          clearResponseButtons();
+        })
+      }
+    }]
+  }
 
   var amessage = {
     text: "Sound good?",

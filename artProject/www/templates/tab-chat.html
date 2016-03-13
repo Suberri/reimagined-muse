@@ -14,7 +14,7 @@
       </label>
       <button class="button button-dark" ng-click="setName(myname)">Send</button>
     </div>
-    <div class="button-bar" ng-if="currentMessage !== null">
+    <div class="button-bar bar-dark" ng-if="currentMessage !== null">
       <button ng-repeat="r in currentMessage.responses"
               ng-click="r.cb()"
               class="button">
