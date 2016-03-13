@@ -24,7 +24,7 @@
 }
 
 .Start .logo {
-  transition: all 0.6s cubic-bezier(0.87, -0.41, 0, 1.78);
+  transition: all 0.65s cubic-bezier(0.87, -0.41, 0, 1.78);
   width: 20%;
   display: block;
   margin: 0 auto;
@@ -37,6 +37,7 @@
 
 .Start .logo.leave {
   margin-top: -100%;
+  opacity: 0;;
 }
 
 

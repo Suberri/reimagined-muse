@@ -18,7 +18,7 @@ angular.module('starter.controllers', [])
 
   setTimeout(function() {
     $state.go('tab.chat');
-  }, 2000);
+  }, 2250);
 })
 
 .controller('TabCtrl', function($scope, $rootScope) {
@@ -51,7 +51,7 @@ angular.module('starter.controllers', [])
           text: '<b>Leave</b>',
           type: 'button-positive',
           onTap: function(e) {
-            $state.go('about');
+
           }
         }
       ]
@@ -76,7 +76,7 @@ angular.module('starter.controllers', [])
           text: '<b>Leave</b>',
           type: 'button-positive',
           onTap: function(e) {
-            $state.go('about');
+            $state.go('start');
           }
         }
       ]
