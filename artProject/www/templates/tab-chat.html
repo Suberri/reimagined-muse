@@ -7,18 +7,19 @@
     <p>{{state.status}}</p>
   </ion-content>
 
-  <ion-footer-bar class="input item-input-inset" ng-if="currentMessage == null">
-    <label class="item-input-wrapper">
-      <input type="text" name="userName" ng-model="myname" />
-    </label>
-    <button class="button button-dark" ng-click="setName(myname)">Send</button>
-
+  <ion-footer-bar class="input item-input-inset">
+    <div ng-if="currentMessage == null">
+      <label class="item-input-wrapper">
+        <input type="text" name="userName" ng-model="myname" />
+      </label>
+      <button class="button button-dark" ng-click="setName(myname)">Send</button>
+    </div>
     <div class="button-bar" ng-if="currentMessage !== null">
       <button ng-repeat="r in currentMessage.responses"
               ng-click="r.cb()"
               class="button">
                 {{r.name}}
-              </button>
+      </button>
     </div>
   </ion-footer-bar>
 </ion-view>
