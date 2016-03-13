@@ -160,4 +160,43 @@ angular.module('starter.services', [])
       return $http.get('data/PMAPowerofArtHackathon-collectiondata.json');
     }
   };
+})
+
+.factory('Likes', function() {
+
+  function get() {
+    var likes;
+    try {
+      likes = JSON.parse(localStorage.likes);
+    } catch (e) {
+      likes = [];
+      set(likes);
+    }
+    return likes;
+  }
+
+  function set(likes) {
+    localStorage.likes = JSON.stringify(likes);
+  }
+
+  function excludesLike(likes, like) {
+    var res = likes.filter(function(item) {
+      return item.objectid == like.objectid;
+    });
+    return res.length == 0;
+  }
+
+  return {
+    getAll : function() {
+      return get();
+    },
+    addLike: function(likeObj) {
+      var likes = get();
+      if(excludesLike(likes, likeObj)) {
+        likes.push(likeObj);
+      }
+      set(likes);
+      return likes;
+    }
+  }
 });

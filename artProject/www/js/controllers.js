@@ -46,14 +46,22 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('GalleriesDetailCtrl', function($scope, $stateParams, Locations, $ionicViewService) {
+.controller('GalleriesDetailCtrl', function($scope, $stateParams, Locations, $ionicViewService, Likes) {
+
   $scope.item = {};
+  $scope.likes = Likes.getAll();
+
   Locations.current().then(function(data) {
     $scope.item = data.objects.filter(function(item){ return item.objectid == $stateParams.objectid; })[0];
   });
 
   $scope.goBack = function() {
     $ionicViewService.getBackView().go()
+  };
+
+  $scope.addLike = function() {
+    Likes.addLike($scope.item);
+    $scope.likes = Likes.getAll();
   }
 
 })

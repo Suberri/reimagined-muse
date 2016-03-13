@@ -12,12 +12,22 @@
         <p>{{item.medium}}</p>
         <p>{{item.date}}</p>
         <div class="button-bar">
-          <a class="button">
+          <a class="button button-positive" ng-click="addLike()">
             <span class="ion-happy-outline giant-icon"></span>
           </a>
         </div>
       </div>
     </div>
+
+    <ion-list>
+      <ion-item>
+        <p>Art you're into</p>
+      </ion-item>
+      <ion-item ng-repeat="l in likes">
+        <h2>{{l.title}}</h2>
+        <p>{{l.artist}}</p>
+      </ion-item>
+    </ion-list>
 
   </ion-content>
 </ion-view>
