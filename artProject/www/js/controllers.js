@@ -189,9 +189,11 @@ angular.module('starter.controllers', [])
         cb: function() {
           makeMessage($scope.myname, "What did you find?")
           .then(function() {
-            makeMessage($scope.theirname, "Racism in his home city of Philadelphia eventually pressured Tanner to study abroad in France, where he met and eventually became one of Thomas Eakins most beloved students!").then(function() {
-              clearResponseButtons();
-              setupResponse(cuteResponse);
+            makeMessage($scope.theirname, "Henry Tanner was the only African-American student at PAFA under Thomas Eakins. Eakins was a controversial artist: not only did he mentor Tanner in a time when racisim was rampant, but he also allowed female students to paint nude male models.").then(function() {
+              makeMessage($scope.theirname, "Anyway, Tanner found it hard to paint among the tense racial climate in America. He left to France instead.").then(function() {
+                clearResponseButtons();
+                setupResponse(cuteResponse);
+              })
             });
           })
         }
