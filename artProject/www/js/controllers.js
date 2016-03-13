@@ -20,6 +20,31 @@ angular.module('starter.controllers', [])
         });
 })
 
+.controller('PassportCtrl', function($scope, $ionicPopup, $state) {
+    $scope.myname = localStorage.name;
+
+  $scope.setEmail = function(email) {
+    var leavePopup = $ionicPopup.show({
+      title: 'My Current Passport',
+      template: 'You have been very busy here is what you have done so far',
+      scope: $scope,
+      buttons: [
+        { text: 'Stay here' },
+        {
+          text: '<b>Leave</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            $state.go('about');
+          }
+        }
+      ]
+    });
+
+  };
+
+
+})
+
 .controller('ExitCtrl', function($scope, $ionicPopup, $state) {
   $scope.myname = localStorage.name;
 
