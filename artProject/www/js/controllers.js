@@ -179,7 +179,7 @@ angular.module('starter.controllers', [])
       {
         name: "Sure",
         cb: function() {
-          makeMessage($scope.myname, "Let's hear it")
+          makeMessage($scope.myname, "What did you find?")
           .then(function() {
             makeMessage($scope.theirname, "Racism in his home city of Philadelphia eventually pressured Tanner to study abroad in France, where he met and eventually became one of Thomas Eakins most beloved students!").then(function() {
               clearResponseButtons();
