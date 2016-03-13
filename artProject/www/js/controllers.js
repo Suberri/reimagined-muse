@@ -29,6 +29,31 @@ angular.module('starter.controllers', [])
         });
 })
 
+.controller('PassportCtrl', function($scope, $ionicPopup, $state) {
+    $scope.myname = localStorage.name;
+
+  $scope.setEmail = function(email) {
+    var leavePopup = $ionicPopup.show({
+      title: 'My Current Passport',
+      template: 'You have been very busy here is what you have done so far',
+      scope: $scope,
+      buttons: [
+        { text: 'Stay here' },
+        {
+          text: '<b>Leave</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            $state.go('about');
+          }
+        }
+      ]
+    });
+
+  };
+
+
+})
+
 .controller('ExitCtrl', function($scope, $ionicPopup, $state) {
   $scope.myname = localStorage.name;
 
@@ -126,7 +151,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChatCtrl', function($scope, Locations, $q, $ionicScrollDelegate, $rootScope) {
-  $scope.myname = "";
+  $scope.myname = $scope.myname || localStorage.name;
   $scope.theirname = "Arty";
   $scope.state = {};
   $scope.state.messages = [];
@@ -149,7 +174,7 @@ angular.module('starter.controllers', [])
   });
 
   var stepOne = {
-    text: "Hey, just noticed that you liked a painting by Henry Tanner. I found a connection between Tanner and another artist you liked. Interested?",
+    text: "Hey " + $scope.myname + ", just noticed that you liked a painting by Henry Tanner. I found a connection between Tanner and another artist you liked. Interested?",
     responses: [
       {
         name: "Sure",
@@ -180,7 +205,7 @@ angular.module('starter.controllers', [])
         cb: function() {
           makeMessage($scope.myname, "Yeah!")
           .then(function() {
-            makeMessage($scope.theirname, "Awesome. Also, you can switch to the gallery view at any time and explore for yourself.");
+            makeMessage($scope.theirname, "Great. Also, you may switch to the Gallery at any time to explore on your own.");
             clearResponseButtons();
           })
         }
@@ -208,7 +233,7 @@ angular.module('starter.controllers', [])
 
       makeMessage($scope.theirname, "Hi, " + $scope.myname + "! It's great to meet you. My name is Arthur, but you can call me "+$scope.theirname+" for short.")
       .then(function() {
-        makeMessage($scope.theirname, "As you explore the museum, I'll let you know if there's something cool about about a piece of art near you.")
+        makeMessage($scope.theirname, "As you explore the museum, I'll do my best to enrich your experience.")
         .then(function() {
           setupResponse(amessage);
         });
@@ -217,13 +242,21 @@ angular.module('starter.controllers', [])
 
   }
 
+  $scope.goNext = function(key) {
+    console.log(key);
+    if (key == 49) {
+      setupResponse(stepOne);
+    }
+  }
+
   function clearResponseButtons() {
     $scope.currentMessage = {};
   }
 
   function setupResponse(messageData) {
-    $scope.currentMessage = messageData;
-    makeMessage($scope.theirname, messageData.text)
+    makeMessage($scope.theirname, messageData.text).then(function() {
+      $scope.currentMessage = messageData;
+    })
   }
 
 

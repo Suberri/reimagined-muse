@@ -67,7 +67,6 @@ body.platform-browser .message.from-them:after {
   -webkit-transform: translate(-30px, -2px);
 }
 
-<<<<<<< HEAD
 .pull-right span, .pull-left span {
   display: block;
 }
@@ -88,7 +87,7 @@ body.platform-browser .message.from-them:after {
     clear: both;
 }
 
-.input input {
+.input label {
   float: left;
   width: 79%;
   height: 35px;
@@ -97,6 +96,8 @@ body.platform-browser .message.from-them:after {
 .input button {
   float: left;
   width: 19%;
-  margin-left: 2%;
+  margin-left: 2% !important;
   height: 35px;
 }
+
+.bar-footer { height: 53px !important; }

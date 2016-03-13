@@ -82,6 +82,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  .state('tab.passport', {
+      url: '/passport',
+    views: {
+      'tab-passport': {
+        templateUrl: 'templates/tab-passport.html',
+        controller: 'PassportCtrl'
+      }
+    }
+  })
+  
   .state('about', {
     url: '/about',
     templateUrl: 'templates/about.html'
