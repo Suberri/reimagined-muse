@@ -42,20 +42,17 @@ angular.module('starter.controllers', [])
 
   $scope.likes = Likes.getAll();
 
-  setTimeout(function() {
-    var elem = document.querySelector('.ms-grid');
-    var msnry = new Masonry( elem, {
-      // options
-      itemSelector: '.ms-grid-item',
-      columnWidth: 200
-    });
+  $scope.showLikes = function() {
+      setTimeout(function() {
 
-    // element argument can be a selector string
-    //   for an individual element
-    var msnry = new Masonry( '.ms-grid', {
-      // options
-    });
-  }, 100);
+        var elems = document.querySelectorAll('.grid-item');
+
+        angular.forEach(elems, function(el) {
+          el.style.visibility = "visible";
+        });
+        
+      }, 100);
+  }
 
   $scope.setEmail = function(email) {
     var leavePopup = $ionicPopup.show({

@@ -9,9 +9,9 @@
         Would you like to see what I have for you so far?
       </p>
     </div>
-    <!-- <div class="ms-grid" style="position:relative;margin-top: 70%;">
-      <img class="ms-grid-item" ng-repeat="l in likes" ng-src="/img/thumbnails/{{l.imageFilename}}" style="width: 100px;"></>
-    </div> -->
+    <div class="grid" style="position:relative;margin-top: 70%;">
+      <img class="grid-item" ng-repeat="l in likes" ng-src="/img/thumbnails/{{l.imageFilename}}" style="visibility: hidden"></>
+    </div>
   </ion-content>
   <ion-footer-bar class="input item-input-inset">
 <!--     <div ng-if="currentMessage == null">
@@ -21,7 +21,7 @@
       <button class="button button-dark" ng-click="setName(myname)">Send</button>
     </div> -->
     <div class="button-bar bar-dark" ng-if="currentMessage !== null">
-      <button class="button">
+      <button class="button" ng-click="showLikes()">
         Yeah
       </button>
       <button class="button">
