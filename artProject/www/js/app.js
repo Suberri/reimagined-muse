@@ -60,6 +60,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'ChatCtrl'
       }
     }
+  })
+  .state('tab.exit', {
+      url: '/exit',
+    views: {
+      'tab-exit': {
+        templateUrl: 'templates/tab-exit.html',
+        controller: 'ExitCtrl'
+      }
+    }
+  })
+  .state('about', {
+    url: '/about',
+    templateUrl: 'templates/about.html'
   });
 
   // if none of the above states are matched, use this as the fallback

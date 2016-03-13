@@ -1,0 +1,21 @@
+<ion-view view-title="Passport">
+  <ion-content class="Passport" padding="true">
+    <div>
+      <p class="message from-them">
+        Oh, hey. Arty again! You leaving, {{myname}}?
+        Alright, well, leave your email at the bottom and I'll send you a summary of what you did today!
+      </p>
+    </div>
+    <ion-list>
+
+    </ion-list>
+  </ion-content>
+  <ion-footer-bar class="item-input-inset">
+    <label class="item-input-wrapper">
+      <input type="text" placeholder="Email" ng-model="email">
+    </label>
+    <button class="button button-dark" ng-click="setEmail(email)">
+      Send
+    </button>
+  </ion-footer-bar>
+</ion-view>

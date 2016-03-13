@@ -11,6 +11,31 @@ angular.module('starter.controllers', [])
         });
 })
 
+.controller('ExitCtrl', function($scope, $ionicPopup, $state) {
+  $scope.myname = localStorage.name;
+
+  $scope.setEmail = function(email) {
+    var leavePopup = $ionicPopup.show({
+      title: 'Thanks',
+      template: 'You can leave & reset things for next time, or keep poking around. Up to you!',
+      scope: $scope,
+      buttons: [
+        { text: 'Stay here' },
+        {
+          text: '<b>Leave</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            $state.go('about');
+          }
+        }
+      ]
+    });
+
+  };
+
+
+})
+
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -140,6 +165,7 @@ angular.module('starter.controllers', [])
 
   $scope.setName = function(name) {
     $scope.myname = name;
+    localStorage.name = name;
     makeMessage(name, name).then(function() {
 
       makeMessage($scope.theirname, "Hi, " + $scope.myname + "! It's great to meet you. My name is Arthur, but you can call me "+$scope.theirname+" for short.")
@@ -182,11 +208,6 @@ angular.module('starter.controllers', [])
     return deferred.promise;
   }
 
-  // try {
-  //   $scope.myname = JSON.parse(window.localStorage.user).name;
-  // } catch (e) {
-  //   $scope.myname = "you";
-  // }
 
   var thing = Locations.current().then(function(data) {
     $scope.gallery = data;
