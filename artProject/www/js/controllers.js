@@ -37,8 +37,25 @@ angular.module('starter.controllers', [])
         });
 })
 
-.controller('PassportCtrl', function($scope, $ionicPopup, $state) {
-    $scope.myname = localStorage.name;
+.controller('PassportCtrl', function($scope, $ionicPopup, $state, Likes) {
+  $scope.myname = localStorage.name;
+
+  $scope.likes = Likes.getAll();
+
+  setTimeout(function() {
+    var elem = document.querySelector('.ms-grid');
+    var msnry = new Masonry( elem, {
+      // options
+      itemSelector: '.ms-grid-item',
+      columnWidth: 200
+    });
+
+    // element argument can be a selector string
+    //   for an individual element
+    var msnry = new Masonry( '.ms-grid', {
+      // options
+    });
+  }, 100);
 
   $scope.setEmail = function(email) {
     var leavePopup = $ionicPopup.show({
