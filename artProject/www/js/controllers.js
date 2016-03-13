@@ -51,54 +51,114 @@ angular.module('starter.controllers', [])
   Locations.current().then(function(data) {
     $scope.item = data.objects.filter(function(item){ return item.objectid == $stateParams.objectid; })[0];
   });
-  
+
   $scope.goBack = function() {
     $ionicViewService.getBackView().go()
   }
 
 })
 
-.controller('ChatCtrl', function($scope, Locations, $q) {
-  $scope.myname;
-  $scope.theirname = "Art";
+.controller('ChatCtrl', function($scope, Locations, $q, $ionicScrollDelegate) {
+  $scope.myname = "";
+  $scope.theirname = "Arty";
   $scope.state = {};
   $scope.state.messages = [];
 
-  $scope.setName = function() {
-    makeMessage($scope.myname, $scope.myname, 100).then(function() {
-      makeMessage("Art", "Hi, " + $scope.myname + "! It's great to meet you. My name is Arthur, but you can call me Art for short.", 2000).then(function() {
-        makeMessage("Art", "Let's get started! When you're ready, switch over to the gallery view. I'll try my best to pull up some interesting information about the art around you. If you think something's cool, let me know.", 5000).then(function() {
-        })
-      });
+
+  $scope.$on('message:rendered', function() {
+    $scope.state.status = "";
+    $scope.$apply();
+    $ionicScrollDelegate.scrollBottom();
+  });
+
+  $scope.$on('message:started', function(event, name) {
+    if(name != $scope.myname) {
+      $scope.state.status = name+" is typing...";
+    }
+  });
+
+
+  var amessage = {
+    text: "Looks like you're into post-modern impressionalist nihilist photography, would you like to learn more about that?",
+    responses: [
+      {
+        name: "History",
+        cb: function() {
+          makeMessage($scope.myname, "History sounds fun, let's go with that.")
+          .then(function() {
+            makeMessage($scope.theirname, "Cool! Uhhhh gimme a sec...");
+            clearResponseButtons();
+          })
+        }
+      },
+      {
+        name: "not history",
+        cb: function() {
+          makeMessage($scope.myname, "Anything but history.")
+          .then(function() {
+            makeMessage($scope.theirname, "Wow, great. super helpful.");
+            clearResponseButtons();
+          })
+        }
+      }
+    ]
+  };
+
+  $scope.setName = function(name) {
+    $scope.myname = name;
+    makeMessage(name, name).then(function() {
+
+      makeMessage($scope.theirname, "Hi, " + $scope.myname + "! It's great to meet you. My name is Arthur, but you can call me "+$scope.theirname+" for short.")
+      .then(function() {
+        makeMessage($scope.theirname, "Let's get started! When you're ready, switch over to the gallery view. I'll try my best to pull up some interesting information about the art around you. If you think something's cool, let me know.")
+        .then(function() {
+          setupResponse(amessage);
+        });
+      })
     });
+
+
   }
 
-  function makeMessage(name, message, delay) {
+
+  function clearResponseButtons() {
+    $scope.currentMessage = {};
+  }
+
+  function setupResponse(messageData) {
+    $scope.currentMessage = messageData;
+    makeMessage($scope.theirname, messageData.text)
+  }
+
+
+  function makeMessage(name, message) {
     var deferred = $q.defer();
-    delay = delay || 2000;
-    $scope.state.status = name+" is typing...";
+    var delay = message.length * 10;
+    if(name == $scope.myname) {
+      delay = 0;
+    }
+    $scope.$broadcast('message:started', name);
     setTimeout(function() {
       $scope.state.messages.push({
         text: message,
         datetime: new Date(),
         sender: name
       });
-      $scope.state.status = "";
-      $scope.$apply();
+      $scope.$broadcast('message:rendered');
       deferred.resolve();
     }, delay);
     return deferred.promise;
   }
 
-  try {
-    $scope.myname = JSON.parse(window.localStorage.user).name;
-  } catch (e) {
-    $scope.myname = "you";
-  }
+  // try {
+  //   $scope.myname = JSON.parse(window.localStorage.user).name;
+  // } catch (e) {
+  //   $scope.myname = "you";
+  // }
 
   var thing = Locations.current().then(function(data) {
     $scope.gallery = data;
-    makeMessage("Art", "Hi! Welcome to the Philadelphia Museum of Art. Let's get started! What's your name?").then(function() {
+    makeMessage($scope.theirname, "Hi! Welcome to the Philadelphia Museum of Art. Let's get started! What's your name?").then(function() {
 
       // makeMessage("Art", "Let me know if you have any questions, specifically around the history or process of the pieces in this gallery.");
     })

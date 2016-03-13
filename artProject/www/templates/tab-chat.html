@@ -1,16 +1,24 @@
 <ion-view view-title="">
   <ion-content padding="true">
-    <div ng-repeat="m in state.messages" style="overflow: auto;" class="{{ m.sender == 'Art' ? 'pull-left' : 'pull-right'}}">
-      <p class="message {{ m.sender == 'Art' ? 'from-them' : 'from-me'}}">{{m.text}}</p>
+    <div ng-repeat="m in state.messages" style="overflow: auto;" class="{{ m.sender == theirname ? 'pull-left' : 'pull-right'}}">
+      <p class="message {{ m.sender == theirname ? 'from-them' : 'from-me'}}">{{m.text}}</p>
     </div>
     <br>
     <p>{{state.status}}</p>
   </ion-content>
 
   <ion-footer-bar>
-    <div class="input">
+    <div class="input" ng-if="currentMessage == null">
       <input name="userName" ng-model="myname" />
-      <button ng-click="setName()">Send</button>
+      <button ng-click="setName(myname)">Send</button>
+    </div>
+
+    <div class="button-bar" ng-if="currentMessage !== null">
+      <button ng-repeat="r in currentMessage.responses"
+              ng-click="r.cb()"
+              class="button">
+                {{r.name}}
+              </button>
     </div>
   </ion-footer-bar>
 </ion-view>
