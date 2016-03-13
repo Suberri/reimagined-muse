@@ -2,23 +2,6 @@ angular.module('starter.services', [])
 
 .factory('Locations', function($http) {
 
-  // Dummy Data
-  var locations = [
-  {
-    id: "160",
-    gallery: "European Art 1850-1900"
-  }, {
-    id: "161",
-    gallery: "European Art 1850-1900"
-  }, {
-    id: "162",
-    gallery: "European Art 1850-1900"
-  }, {
-    id: "163",
-    gallery: "European Art 1850-1900"
-  }
-  ];
-
   // Tidy up and consolidate fields
   function cleanObject(object) {
     var titles = [];
@@ -88,7 +71,7 @@ angular.module('starter.services', [])
 
   return {
     current: function() {
-      return returnObjectsInGallery("163");
+      return returnObjectsInGallery("116");
     },
     // Return user's previous location?
     // Could be used to "bridge the gap" -- provide facts about the purposeful transition between locations?

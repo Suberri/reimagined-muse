@@ -119,6 +119,29 @@ angular.module('starter.controllers', [])
     }
   });
 
+  var stepOne = {
+    text: "Hey, just noticed that you liked a painting by Henry Tanner. I found a connection between Tanner and another artist you liked. Interested?",
+    responses: [
+      {
+        name: "Sure",
+        cb: function() {
+          makeMessage($scope.myname, "Let's hear it")
+          .then(function() {
+            makeMessage($scope.theirname, "Racism in his home city of Philadelphia eventually pressured Tanner to study abroad in France, where he met and eventually became one of Thomas Eakins most beloved students!");
+            clearResponseButtons();
+          })
+        }
+      } , {
+        name: "Not now",
+        cb: function() {
+          makeMessage($scope.myname, "Not right now")
+          .then(function() {
+            makeMessage($scope.theirname, "No problem. I've saved this connection for you -- feel free to check it out later!")
+          })
+        }
+      }
+    ]
+  };
 
   var amessage = {
     text: "Sound good?",
