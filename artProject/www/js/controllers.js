@@ -9,6 +9,14 @@ angular.module('starter.controllers', [])
   }, 500);
 
   setTimeout(function() {
+    $scope.almostDone = true;
+  }, 1000);
+
+  setTimeout(function() {
+    $scope.done = true;
+  }, 1500);
+
+  setTimeout(function() {
     $state.go('tab.chat');
   }, 2000);
 })
