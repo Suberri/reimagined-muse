@@ -102,7 +102,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChatCtrl', function($scope, Locations, $q, $ionicScrollDelegate) {
-  $scope.myname = "";
+  $scope.myname = $scope.myname || localStorage.name;
   $scope.theirname = "Arty";
   $scope.state = {};
   $scope.state.messages = [];
@@ -201,8 +201,9 @@ angular.module('starter.controllers', [])
   }
 
   function setupResponse(messageData) {
-    $scope.currentMessage = messageData;
-    makeMessage($scope.theirname, messageData.text)
+    makeMessage($scope.theirname, messageData.text).then(function() {
+      $scope.currentMessage = messageData;
+    })
   }
 
 
