@@ -79,25 +79,28 @@ angular.module('starter.controllers', [])
 
 
   var amessage = {
-    text: "Looks like you're into post-modern impressionalist nihilist photography, would you like to learn more about that?",
+    text: "Sound good?",
     responses: [
       {
-        name: "History",
+        name: "Yeah!",
         cb: function() {
-          makeMessage($scope.myname, "History sounds fun, let's go with that.")
+          makeMessage($scope.myname, "Yeah!")
           .then(function() {
-            makeMessage($scope.theirname, "Cool! Uhhhh gimme a sec...");
+            makeMessage($scope.theirname, "Awesome. Also, you can switch to the gallery view at any time and explore for yourself.");
             clearResponseButtons();
           })
         }
       },
       {
-        name: "not history",
+        name: "No thanks.",
         cb: function() {
-          makeMessage($scope.myname, "Anything but history.")
+          makeMessage($scope.myname, "No Thanks")
           .then(function() {
-            makeMessage($scope.theirname, "Wow, great. super helpful.");
+            makeMessage($scope.theirname, "Oh, okay.");
             clearResponseButtons();
+          })
+          .then(function() {
+            makeMessage($scope.theirname, "I guess this is goodbye, then.")
           })
         }
       }
@@ -110,16 +113,14 @@ angular.module('starter.controllers', [])
 
       makeMessage($scope.theirname, "Hi, " + $scope.myname + "! It's great to meet you. My name is Arthur, but you can call me "+$scope.theirname+" for short.")
       .then(function() {
-        makeMessage($scope.theirname, "Let's get started! When you're ready, switch over to the gallery view. I'll try my best to pull up some interesting information about the art around you. If you think something's cool, let me know.")
+        makeMessage($scope.theirname, "As you explore the museum, I'll let you know if there's something cool about about a piece of art near you.")
         .then(function() {
           setupResponse(amessage);
         });
       })
     });
 
-
   }
-
 
   function clearResponseButtons() {
     $scope.currentMessage = {};
