@@ -3,6 +3,15 @@ angular.module('starter.controllers', [])
 .controller('LocationsCtrl', function($scope, Locations) {
   $scope.location = Locations.current();
 })
+.controller('StartCtrl', function($scope, $state) {
+  setTimeout(function() {
+    $scope.active = true;
+  }, 500);
+
+  setTimeout(function() {
+    $state.go('tab.chat');
+  }, 2000);
+})
 
 .controller('BeaconsCtrl', function($scope, $http) {
   $http.get('../data/PMAPowerofArtHackathon-ibeacons.json')
@@ -72,7 +81,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('GalleriesDetailCtrl', function($scope, $stateParams, Locations, $ionicViewService, Likes) {
-
+  $scope.liked = false;
   $scope.item = {};
   $scope.likes = Likes.getAll();
 
@@ -86,6 +95,7 @@ angular.module('starter.controllers', [])
 
   $scope.addLike = function() {
     Likes.addLike($scope.item);
+    $scope.liked = !$scope.liked;
     $scope.likes = Likes.getAll();
   }
 

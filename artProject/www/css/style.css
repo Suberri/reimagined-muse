@@ -7,3 +7,31 @@
   max-width: 80px;
   padding-right: 10px;
 }
+
+.Gallery-object img {
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+}
+
+
+.Start {
+  background: steelblue;
+  color: white;
+  text-align: center;
+  padding-top: 25%;
+}
+
+.Start .logo {
+  transition: all 0.6s cubic-bezier(.87,-.41,.19,1.44);
+  font-size: 2rem;
+}
+
+.Start .logo.active {
+  font-size: 6rem;
+}
+
+.giant-icon {
+  font-size: 4rem;
+  line-height: 1.5;
+}

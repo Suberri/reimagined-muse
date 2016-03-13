@@ -36,8 +36,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
-  // Each tab has its own nav history stack:
 
+  // Each tab has its own nav history stack:
   .state('tab.galleries', {
       url: '/galleries',
       views: {
@@ -47,10 +47,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
   })
-  .state('gallery-detail', {
+  .state('tab.gallery-detail', {
       url: '/galleries/:objectid',
-      templateUrl: 'templates/tab-galleries-detail.html',
-      controller: 'GalleriesDetailCtrl'
+      views: {
+        'tab-galleries': {
+          templateUrl: 'templates/tab-galleries-detail.html',
+          controller: 'GalleriesDetailCtrl'
+        }
+      }
   })
   .state('tab.chat', {
       url: '/chat',
@@ -73,9 +77,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('about', {
     url: '/about',
     templateUrl: 'templates/about.html'
+  })
+  .state('start', {
+    url: '/start',
+    templateUrl: 'templates/start.html',
+    controller: 'StartCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/chat');
+  $urlRouterProvider.otherwise('/start');
 
 });
