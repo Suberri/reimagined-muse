@@ -1,4 +1,4 @@
-<ion-view view-title="">
+<ion-view hide-nav-bar="true" hide-back-button="true">
   <ion-content padding="true">
     <div ng-repeat="m in state.messages" style="overflow: auto;" class="{{ m.sender == theirname ? 'pull-left' : 'pull-right'}}">
       <p class="message {{ m.sender == theirname ? 'from-them' : 'from-me'}}">{{m.text}}</p>

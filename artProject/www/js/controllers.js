@@ -3,6 +3,15 @@ angular.module('starter.controllers', [])
 .controller('LocationsCtrl', function($scope, Locations) {
   $scope.location = Locations.current();
 })
+.controller('StartCtrl', function($scope, $state) {
+  setTimeout(function() {
+    $scope.active = true;
+  }, 500);
+
+  setTimeout(function() {
+    $state.go('tab.chat');
+  }, 2000);
+})
 
 .controller('BeaconsCtrl', function($scope, $http) {
   $http.get('../data/PMAPowerofArtHackathon-ibeacons.json')

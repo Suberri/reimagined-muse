@@ -73,9 +73,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('about', {
     url: '/about',
     templateUrl: 'templates/about.html'
+  })
+  .state('start', {
+    url: '/start',
+    templateUrl: 'templates/start.html',
+    controller: 'StartCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/chat');
+  $urlRouterProvider.otherwise('/start');
 
 });
