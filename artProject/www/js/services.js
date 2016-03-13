@@ -12,7 +12,7 @@ angular.module('starter.services', [])
     if(object.titleOfWork5) titles.push(object.titleOfWork5)
     if(object.titleOfWork6) titles.push(object.titleOfWork6)
     if(object.titleOfWork7) titles.push(object.titleOfWork7)
-    object.title = titles.join(',');
+    object.title = titles.join(', ');
 
     var artists = [];
     if(object.artistName1) artists.push(object.artistName1)
@@ -22,7 +22,7 @@ angular.module('starter.services', [])
     if(object.artistName5) artists.push(object.artistName5)
     if(object.artistName6) artists.push(object.artistName6)
     if(object.artistName7) artists.push(object.artistName7)
-    object.artist = artists.join(',');
+    object.artist = artists.join(', ');
     return object;
   }
   // Alias is the gallery ID. What we want to do

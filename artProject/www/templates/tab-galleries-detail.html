@@ -1,8 +1,5 @@
-<ion-view view-title="Galleries">
+<ion-view view-title="{{item.title}}">
   <ion-content padding="true">
-    <a class="button button-clear button-small" href="#/tab/galleries">
-      <span class="ion-ios-arrow-left"></span> back</a>
-    <br>
     <div class="card Gallery-object">
       <div class="item item-text-wrap">
         <img ng-src="img/thumbnails/{{item.imageFilename}}" alt="">
@@ -12,16 +9,16 @@
           {{ more ? 'Hide' : 'Show more' }}
         </button>
         <div class="list list-inset" ng-show="more">
-          <div class="item">date: {{item.date}}</div>
-          <div class="item">medium: {{item.medium}}</div>
-          <div class="item">materials: {{item.materials}}</div>
-          <div class="item">dimensions: {{item.dimensions}}</div>
-          <div class="item">credit: {{item.creditLine}}</div>
+          <div class="item"><small><strong>date:</strong></small> {{item.date}}</div>
+          <div class="item"><small><strong>medium:</strong></small> {{item.medium}}</div>
+          <div class="item"><small><strong>materials:</strong></small> {{item.materials}}</div>
+          <div class="item"><small><strong>dimensions:</strong></small> {{item.dimensions}}</div>
+          <div class="item"><small><strong>credit:</strong></small> {{item.creditLine}}</div>
         </div>
 
         <div class="button-bar">
-          <a class="button button-positive" ng-click="addLike()">
-            <span class="ion-happy-outline giant-icon"></span>
+          <a class="button " ng-class="{ 'button-positive': !liked }" ng-click="addLike()">
+            <span class="giant-icon" ng-class="{ 'ion-checkmark': liked, 'ion-happy-outline': !liked}"></span>
           </a>
         </div>
       </div>

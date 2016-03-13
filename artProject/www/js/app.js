@@ -36,8 +36,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
-  // Each tab has its own nav history stack:
 
+  // Each tab has its own nav history stack:
   .state('tab.galleries', {
       url: '/galleries',
       views: {
@@ -47,10 +47,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
   })
-  .state('gallery-detail', {
+  .state('tab.gallery-detail', {
       url: '/galleries/:objectid',
-      templateUrl: 'templates/tab-galleries-detail.html',
-      controller: 'GalleriesDetailCtrl'
+      views: {
+        'tab-galleries': {
+          templateUrl: 'templates/tab-galleries-detail.html',
+          controller: 'GalleriesDetailCtrl'
+        }
+      }
   })
   .state('tab.chat', {
       url: '/chat',

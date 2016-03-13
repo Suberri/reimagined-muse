@@ -81,7 +81,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('GalleriesDetailCtrl', function($scope, $stateParams, Locations, $ionicViewService, Likes) {
-
+  $scope.liked = false;
   $scope.item = {};
   $scope.likes = Likes.getAll();
 
@@ -95,6 +95,7 @@ angular.module('starter.controllers', [])
 
   $scope.addLike = function() {
     Likes.addLike($scope.item);
+    $scope.liked = !$scope.liked;
     $scope.likes = Likes.getAll();
   }
 
