@@ -7,8 +7,8 @@
     <p>{{state.status}}</p>
   </ion-content>
 
-  <ion-footer-bar class="input item-input-inset">
-    <label class="item-input-wrapper" ng-if="currentMessage == null">
+  <ion-footer-bar class="input item-input-inset" ng-if="currentMessage == null">
+    <label class="item-input-wrapper">
       <input type="text" name="userName" ng-model="myname" />
     </label>
     <button class="button button-dark" ng-click="setName(myname)">Send</button>
