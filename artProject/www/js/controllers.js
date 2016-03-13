@@ -13,6 +13,15 @@ angular.module('starter.controllers', [])
   }, 2000);
 })
 
+.controller('TabCtrl', function($scope, $rootScope) {
+  $scope.setActive = function() {
+    $scope.notification = null;
+  }
+  $rootScope.$on('notification', function(e, data) {
+    $scope.notification = 1;
+  });
+})
+
 .controller('BeaconsCtrl', function($scope, $http) {
   $http.get('../data/PMAPowerofArtHackathon-ibeacons.json')
         .then(function(results) {
@@ -80,10 +89,17 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('GalleriesDetailCtrl', function($scope, $stateParams, Locations, $ionicViewService, Likes) {
+.controller('GalleriesDetailCtrl', function($scope, $stateParams, Locations, $ionicViewService, Likes, $ionicModal, $rootScope) {
   $scope.liked = false;
   $scope.item = {};
   $scope.likes = Likes.getAll();
+
+  $ionicModal.fromTemplateUrl('/templates/webview-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
 
   Locations.current().then(function(data) {
     $scope.item = data.objects.filter(function(item){ return item.objectid == $stateParams.objectid; })[0];
@@ -97,11 +113,19 @@ angular.module('starter.controllers', [])
     Likes.addLike($scope.item);
     $scope.liked = !$scope.liked;
     $scope.likes = Likes.getAll();
+    if( $scope.item.objectid == 103024) {
+      $rootScope.$broadcast('notification', 1);
+    }
+  }
+
+
+  $scope.showWebView = function(url) {
+    $scope.modal.show();
   }
 
 })
 
-.controller('ChatCtrl', function($scope, Locations, $q, $ionicScrollDelegate) {
+.controller('ChatCtrl', function($scope, Locations, $q, $ionicScrollDelegate, $rootScope) {
   $scope.myname = "";
   $scope.theirname = "Arty";
   $scope.state = {};
@@ -118,6 +142,10 @@ angular.module('starter.controllers', [])
     if(name != $scope.myname) {
       $scope.state.status = name+" is typing...";
     }
+  });
+
+  $rootScope.$on('notification', function(e, data) {
+    setupResponse(stepOne);
   });
 
   var stepOne = {

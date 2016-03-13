@@ -23,7 +23,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
+
+  $sceDelegateProvider.resourceUrlWhitelist([
+       // Allow same origin resource loads.
+       'self',
+       // Allow loading from our assets domain.  Notice the difference between * and **.
+       'http://www.philamuseum.org/**']);
+
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -34,7 +41,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
+    controller: 'TabCtrl'
   })
 
   // Each tab has its own nav history stack:
