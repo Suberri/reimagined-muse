@@ -111,7 +111,7 @@ angular.module('starter.controllers', [])
   });
 
   var stepOne = {
-    text: "Hey, just noticed that you liked a painting by Henry Tanner. I found a connection between Tanner and another artist you liked. Interested?",
+    text: "Hey " + $scope.myname + ", just noticed that you liked a painting by Henry Tanner. I found a connection between Tanner and another artist you liked. Interested?",
     responses: [
       {
         name: "Sure",
@@ -142,7 +142,7 @@ angular.module('starter.controllers', [])
         cb: function() {
           makeMessage($scope.myname, "Yeah!")
           .then(function() {
-            makeMessage($scope.theirname, "Awesome. Also, you can switch to the gallery view at any time and explore for yourself.");
+            makeMessage($scope.theirname, "Great. Also, you may switch to the Gallery at any time to explore on your own.");
             clearResponseButtons();
           })
         }
@@ -170,13 +170,20 @@ angular.module('starter.controllers', [])
 
       makeMessage($scope.theirname, "Hi, " + $scope.myname + "! It's great to meet you. My name is Arthur, but you can call me "+$scope.theirname+" for short.")
       .then(function() {
-        makeMessage($scope.theirname, "As you explore the museum, I'll let you know if there's something cool about about a piece of art near you.")
+        makeMessage($scope.theirname, "As you explore the museum, I'll do my best to enrich your experience.")
         .then(function() {
           setupResponse(amessage);
         });
       })
     });
 
+  }
+
+  $scope.goNext = function(key) {
+    console.log(key);
+    if (key == 49) {
+      setupResponse(stepOne);
+    }
   }
 
   function clearResponseButtons() {

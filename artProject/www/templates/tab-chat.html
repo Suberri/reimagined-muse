@@ -1,4 +1,4 @@
-<ion-view view-title="">
+<ion-view view-title="" ng-keyup="goNext($event.keyCode)" tabindex="0">
   <ion-content padding="true">
     <div ng-repeat="m in state.messages" style="overflow: auto;" class="{{ m.sender == theirname ? 'pull-left' : 'pull-right'}}">
       <p class="message {{ m.sender == theirname ? 'from-them' : 'from-me'}}">{{m.text}}</p>
