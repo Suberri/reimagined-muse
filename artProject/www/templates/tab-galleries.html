@@ -2,9 +2,10 @@
   <ion-content class="Gallery">
     <h3>{{gallery.title}}</h3>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="o in gallery.objects" type="item-text-wrap" ui-sref="gallery-detail({ objectid: o.objectid })">
-        <img ng-src="img/thumbnails/{{o.imageFilename}}">
+      <ion-item class="item item-icon-right " ng-repeat="o in gallery.objects" type="item-text-wrap" ui-sref="gallery-detail({ objectid: o.objectid })">
+        <img ng-src="img/thumbnails/{{o.imageFilename}}" class="Gallery-thumb">
         <h2>{{o.title}}</h2>
+        <p>{{o.artist}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>

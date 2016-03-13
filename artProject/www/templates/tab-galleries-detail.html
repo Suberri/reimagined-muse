@@ -1,16 +1,24 @@
 <ion-view view-title="Galleries">
   <ion-content padding="true">
-    <a class="button-clear" href="#/tab/galleries">
+    <a class="button button-clear button-small" href="#/tab/galleries">
       <span class="ion-ios-arrow-left"></span> back</a>
     <br>
     <div class="card Gallery-object">
       <div class="item item-text-wrap">
-        <h2>{{item.title}}</h2>
-        <p>{{item.artist}}</p>
         <img ng-src="img/thumbnails/{{item.imageFilename}}" alt="">
-        <p>{{item.materials}}</p>
-        <p>{{item.medium}}</p>
-        <p>{{item.date}}</p>
+        <h2>{{item.title}}</h2>
+        <h5>{{item.artist}}</h5>
+        <button class="button button-block button-small" ng-click="more = !more">
+          {{ more ? 'Hide' : 'Show more' }}
+        </button>
+        <div class="list list-inset" ng-show="more">
+          <div class="item">date: {{item.date}}</div>
+          <div class="item">medium: {{item.medium}}</div>
+          <div class="item">materials: {{item.materials}}</div>
+          <div class="item">dimensions: {{item.dimensions}}</div>
+          <div class="item">credit: {{item.creditLine}}</div>
+        </div>
+
         <div class="button-bar">
           <a class="button button-positive" ng-click="addLike()">
             <span class="ion-happy-outline giant-icon"></span>
@@ -21,7 +29,7 @@
 
     <ion-list>
       <ion-item>
-        <p>Art you're into</p>
+        <p>Here's what you've liked so far:</p>
       </ion-item>
       <ion-item ng-repeat="l in likes">
         <h2>{{l.title}}</h2>

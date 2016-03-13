@@ -1,2 +1,9 @@
 /* Empty. Add your own CSS if you like */
 @import './chat.css';
+
+
+.Gallery-thumb {
+  float: left;
+  max-width: 80px;
+  padding-right: 10px;
+}
